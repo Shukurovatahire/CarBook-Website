@@ -1,0 +1,111 @@
+.Card {
+  width: 220px;
+  height: 280px;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+  overflow: hidden;
+  background-color: #f7f9f2;
+  transition: all 0.5s ease-out;
+
+  &:hover {
+    box-shadow: 0 0 10px rgb(255, 252, 252);
+    transform: scale(1.03);
+  }
+  .img {
+    width: 220px;
+    height: 200px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-image: url(https://demoapus1.com/boxcar/wp-content/uploads/2023/11/car3-660x440.jpg);
+  }
+  .imgTitles {
+    height: 100%;
+    padding: 0 1rem 1rem 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    .carTitle {
+      font-size: 12px;
+      color: gray;
+    }
+  }
+
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    .iconBox {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .iconBox p {
+      font-size: 12px;
+      color: rgb(58, 58, 58);
+    }
+  }
+  .price {
+    gap: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .price span {
+    color: rgb(23, 169, 218);
+    font-weight: bold;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .price span:hover {
+    border-bottom: 1px solid rgb(23, 169, 218);
+  }
+}
+
+.edit{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  justify-content: center;
+  color: black  ;
+  left: 85%;
+  top: 5px;
+  background-color: white;
+  border: 1px solid black;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.trash{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  top: 5px;
+  left: 73%;
+  align-items: center;
+  font-size: 10px;
+  justify-content: center;
+  color: black  ;
+  background-color: white;
+  border: 1px solid black;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+
+}
+.trashBtn{
+  font-size: 11px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
