@@ -18,6 +18,9 @@
     margin-left: 8rem;
   }
   .form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     width: 100%;
     height: 100%;
     border-radius: 50px;
@@ -81,4 +84,12 @@
       }
     }
   }
+}
+
+.link:hover{
+  border-bottom: 1px solid #870000;
+}
+.formImg img{
+  width: 500px;
+  height: 690px;
 }

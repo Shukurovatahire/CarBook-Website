@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CarApi } from "../../Services/CarApi/CarApi";
 
 interface ICar {
   id: number;
@@ -43,6 +44,14 @@ const CarSlice = createSlice({
         state.cars[index] = action.payload;
       }
   }},
+  extraReducers:(builder)=>{
+    builder.addMatcher(
+      CarApi.endpoints.getCars.matchFulfilled,
+      (state:any,{payload}:any)=>{
+        state.cars=payload
+      }
+    )
+  }
 });
 
 export const { addCar, addNewcar, deleteCar,updateCar } = CarSlice.actions;

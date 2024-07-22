@@ -69,7 +69,7 @@ const dispatch=useAppDispatch()
         <div className="form">
           <div className="formBox">
             <div className="container">
-              <h4 className="h4">Add a car</h4>
+              <h4 className="h4">Add a car \  <Link to={'/'} className="link"> back home</Link></h4>
               <div>
                 <form className="formItems" onSubmit={handleSubmit}>
                   <label className="flexBox">
@@ -162,11 +162,13 @@ const dispatch=useAppDispatch()
                       onChange={handleOnChange}
                     />
                   </label>
-                  <Link to={'/'}>home</Link>
                   <button className="btn">Submit</button>
                 </form>
               </div>
             </div>
+          </div>
+          <div className="formImg">
+            <img src="https://images.unsplash.com/photo-1583617061528-0dbccc11f754?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
           </div>
         </div>
       </section>

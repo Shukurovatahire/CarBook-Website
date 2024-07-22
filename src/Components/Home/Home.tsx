@@ -3,31 +3,26 @@ import CarCards from "../CarCards/CarCards";
 import Marquee from "../Marquee/Marquee";
 import { GiSettingsKnobs } from "react-icons/gi";
 import "./Home.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
-import { addCar, deleteCar, updateCar } from "../../Redux/CarSlice/CarSlice";
+import { deleteCar, updateCar } from "../../Redux/CarSlice/CarSlice";
 import store from "../../Redux/store";
 import EditWindow from "../EditWindow/EditWindow";
 
 const Home = () => {
-
   const dispatch = useAppDispatch();
-
-  const cars = useAppSelector((state) => state.car.cars);
-  const { data: fetchedCars, isSuccess } = useGetCarsQuery();
-
-  useEffect(() => {
-    if (isSuccess && fetchedCars) {
-        dispatch(addCar(fetchedCars));
-    }
-  }, [fetchedCars, isSuccess, dispatch]);
+  const { data } = useGetCarsQuery();
+  const cars = useAppSelector((state) => {
+    return state.car.cars;
+  });
+  console.log("ex", cars);
 
   console.log("Redux State:", store.getState());
   const [selectedCar, setSelectedCar] = useState<any>(null);
-  
+
   const [openFilters, setOenFilters] = useState(false);
-  const [openModal,setOpenModal]=useState(false)
+  const [openModal, setOpenModal] = useState(false);
   const [selectedMakes, setSelectedMakes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [selectedYear, setSelectedYear] = useState<string[]>([]);
@@ -88,22 +83,24 @@ const Home = () => {
   const handleClick = () => {
     setOenFilters(!openFilters);
   };
-// Delete
-  const handleDelete=(id:number)=>{
-    dispatch(deleteCar(id))
+  // Delete
+  const handleDelete = (id: number) => {
+    dispatch(deleteCar(id));
     console.log(id);
-  }
-// Edit
-const handleEdit=(car:any)=>{
-  setOpenModal(!openModal)
-  setSelectedCar(car)
-}
-const handleSave=(updatedCar:any)=>{
-  dispatch(updateCar(updatedCar))
-console.log(updatedCar,"up");
-console.log(selectedCar);
+  };
+  // Edit
+  const handleEdit = (car: any) => {
+    setOpenModal(!openModal);
+    setSelectedCar(car);
+  };
+  const handleSave = (updatedCar: any) => {
+    dispatch(updateCar(updatedCar));
+    setOpenModal(false);
+  };
 
-}
+  const handleClose = () => {
+    setOpenModal(!openModal);
+  };
 
   if (!cars) {
     return <div>Loading...</div>;
@@ -147,7 +144,7 @@ console.log(selectedCar);
       </section>
 
       <section className="cars">
-        <div>
+        <div style={{ width: "1380px", padding: "2rem" }}>
           <div
             style={{
               display: "flex",
@@ -424,29 +421,27 @@ console.log(selectedCar);
 
           <div className="carlist">
             {filteredCars?.map((car: any) => (
-             
-                <CarCards
-                  key={car.id}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                  car={{
-                    id: car.id,
-                    make: car.make,
-                    model: car.model,
-                    year: car.year,
-                    color: car.color,
-                    mileage: car.mileage,
-                    price: car.price,
-                    fuelType: car.fuelType,
-                    transmission: car.transmission,
-                    engine: car.engine,
-                    horsepower: car.horsepower,
-                    features: car.features,
-                    owners: car.owners,
-                    image: car.image,
-                  }}
-                />
-              
+              <CarCards
+                key={car.id}
+                onEdit={() => handleEdit(car)}
+                onDelete={handleDelete}
+                car={{
+                  id: car.id,
+                  make: car.make,
+                  model: car.model,
+                  year: car.year,
+                  color: car.color,
+                  mileage: car.mileage,
+                  price: car.price,
+                  fuelType: car.fuelType,
+                  transmission: car.transmission,
+                  engine: car.engine,
+                  horsepower: car.horsepower,
+                  features: car.features,
+                  owners: car.owners,
+                  image: car.image,
+                }}
+              />
             ))}
             <Link
               style={{ textDecoration: "none", color: "black" }}
@@ -457,14 +452,15 @@ console.log(selectedCar);
               </div>
             </Link>
           </div>
-       <div>
-        {openModal && selectedCar && (
-          <EditWindow 
-          car={selectedCar}
-          onSave={handleSave}
-          />
-        )}
-       </div>
+          <div className="modalOverlay">
+            {openModal && selectedCar && (
+              <EditWindow
+                onClose={handleClose}
+                car={selectedCar}
+                onSave={handleSave}
+              />
+            )}
+          </div>
         </div>
       </section>
     </>

@@ -173,7 +173,7 @@ const Details = () => {
           </div>
 
           <div className="carOverview">
-            <h4 style={{ fontFamily: "system-ui", fontWeight: "500" }}>
+            <h4 style={{ fontFamily: "system-ui", fontWeight: "500", fontSize:"20px" }}>
               Car Overview / Description
             </h4>
             <div

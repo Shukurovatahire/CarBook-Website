@@ -140,6 +140,12 @@
   transition: transform 1s linear;
 }
 
+.modalOverlay {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
 .cardIcon:hover::before {
   animation: rotateBorder 1s linear infinite;
 
